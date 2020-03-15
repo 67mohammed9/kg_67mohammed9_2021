@@ -1,13 +1,15 @@
 function check(s1, s2){
     if(s1.length>s2.length) return false;//s1 must be smaller than s2 in order to be one to one
     let map = new Map();
-    for(let i = 0; i < s1.length; i++) {
-        map.set(s1.charAt(i),s2.charAt(i));//set each letter in in s1 as the "key" and each letter in s2 as the value
+    let i = 0;
+    while(!map.has(s1.charAt(i))){//loop till the first duplicate is found
+    if(i==s1.length - 1){//if i is at the last letter of s1 return true
+        return true;
     }
-    if(map.size==s1.length){ //maps only store unique "keys" so duplicates will be stored once in the map
-        return true;//true if duplicates aren't found
-    }
-    return false;//false otherwise    
+    map.set(s1.charAt(i),s2.charAt(i));//insert letters of s1 as "keys" and letters of s2 as "values"
+    i++; 
+}
+return false;
 }
 
 //print to stdout
